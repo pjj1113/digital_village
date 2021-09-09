@@ -40,6 +40,13 @@ const routes = [
     meta: { title: '乡村一张图' },
     hidden: true,
   },
+  {
+    path: '/map2',
+    name: 'map2',
+    component: () => import('@/views/map/map2'),
+    meta: { title: '乡村一张图' },
+    hidden: true,
+  },
 ]
 
 const router = new VueRouter({
