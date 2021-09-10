@@ -1,30 +1,35 @@
 <template>
   <div class="login">
-    <div class="page-left">tu</div>
-    <div class="page-right">
-      <el-form
-        :model="ruleForm"
-        status-icon
-        :rules="rules"
-        ref="ruleForm"
-        label-width="100px"
-        class="demo-ruleForm"
-      >
-       <el-form-item label="用户名" prop="user">
-          <el-input v-model.number="ruleForm.user"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="pass">
-          <el-input
-            type="password"
-            v-model="ruleForm.pass"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-      </el-form>
+    <div class="cont-wrap">
+      <div class="page-left">tu</div>
+      <div class="page-right">
+        <el-form
+          :model="ruleForm"
+          status-icon
+          :rules="rules"
+          ref="ruleForm"
+          label-width="100px"
+          class="demo-ruleForm"
+        >
+        <el-form-item prop="user">
+           <el-input v-model.number="ruleForm.user" placeholder="请输入内容">
+              <template slot="prefix"><i class="el-icon-user"></i></template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="pass">
+            <el-input 
+              show-password
+              type="password"
+              v-model="ruleForm.pass"
+              autocomplete="off" placeholder="请输入内容">
+              <template slot="prefix"><i class="el-icon-lock"></i></template>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
     </div>
   </div>
 </template>
@@ -70,7 +75,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          this.$router.push('/home')
         } else {
           console.log("error submit!!");
           return false;
@@ -86,20 +91,42 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  display: flex;
-  justify-content: space-between;
   height: 100%;
-  .page-left {
-    width: 60%;
-  }
-  .page-right {
+  background: #f2f5f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .cont-wrap {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    .demo-ruleForm {
-      width: 400px;
+    width: 80%;
+    height: 600px;
+    background: #fff;
+    .page-left {
+      width: 60%;
+      height: 100%;
+      background: #f9f9f9;
+    }
+    .page-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40%;
+      .demo-ruleForm {
+        width: 400px;
+      }
     }
   }
+}
+/deep/.el-input__inner {
+  border-color: transparent !important;
+  border-bottom-color:#dcdfe6 !important;
+}
+/deep/.el-input__prefix {
+  line-height: 30px;
+}
+/deep/.el-button {
+  width: 100% !important;
+  border-radius: 20px;
+  background: #4d9ab0;
 }
 </style>

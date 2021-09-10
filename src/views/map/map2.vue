@@ -64,6 +64,7 @@ export default {
     }
   },
   mounted() {
+    // var a = 'http://t0.tianditu.com/DataServer?T=ibo_w&x={x}&y={y}&l={z}&tk='
     this.initMap();
   },
   methods: {
